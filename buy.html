@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Category - CampusCart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f7fafc;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .background-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            animation-iteration-count: infinite;
+        }
+        
+        .circle-1 {
+            top: 10%;
+            left: 10%;
+            width: 9rem;
+            height: 9rem;
+            background-color: #ec4899;
+            opacity: 0.3;
+            animation: pulse 4s infinite;
+        }
+        
+        .circle-2 {
+            top: 20%;
+            left: 15%;
+            width: 10rem;
+            height: 10rem;
+            background-color: #f59e0b;
+            opacity: 0.2;
+            animation: bounce 4s infinite;
+        }
+        
+        .circle-3 {
+            top: 50%;
+            left: 33%;
+            width: 7rem;
+            height: 7rem;
+            background-color: #93c5fd;
+            opacity: 0.1;
+            animation: float 4s infinite;
+        }
+        
+        .circle-4 {
+            bottom: 10%;
+            left: 12%;
+            width: 8rem;
+            height: 8rem;
+            background-color: #f87171;
+            opacity: 0.2;
+            animation: bounce 4s infinite;
+        }
+        
+        .circle-5 {
+            top: 40%;
+            left: 50%;
+            width: 6rem;
+            height: 6rem;
+            background-color: #10b981;
+            opacity: 0.25;
+            animation: float 4s infinite;
+        }
+        
+        .circle-6 {
+            top: 70%;
+            left: 10%;
+            width: 6rem;
+            height: 6rem;
+            background-color: #fbbf24;
+            opacity: 0.2;
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(15px);
+            }
+        }
+        
+        .heading-animated {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            animation: colorChange 5s infinite;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        @keyframes colorChange {
+            0% {
+                color: #1e3a8a;
+            }
+            25% {
+                color: #facc15;
+            }
+            50% {
+                color: #f97316;
+            }
+            75% {
+                color: #10b981;
+            }
+            100% {
+                color: #1e3a8a;
+            }
+        }
+        
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+        }
+        
+        .category-btn {
+            font-weight: bold;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        a:hover {
+            color: #facc15;
+        }
+        
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+                visibility: hidden;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+                visibility: hidden;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        .slide-in-left,
+        .slide-in-right {
+            opacity: 0;
+            visibility: hidden;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease;
+        }
+        
+        .slide-in-left {
+            animation-name: slideInLeft;
+        }
+        
+        .slide-in-right {
+            animation-name: slideInRight;
+        }
+        
+        .delay-0 {
+            animation-delay: 0s;
+        }
+        
+        .delay-2 {
+            animation-delay: 2s;
+        }
+        
+        .delay-4 {
+            animation-delay: 4s;
+        }
+        
+        .delay-6 {
+            animation-delay: 6s;
+        }
+        
+        @media (min-width: 640px) {
+            .slide-in-left,
+            .slide-in-right {
+                animation: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-indigo-600 via-blue-900 to-purple-900 text-white">
+
+    <!-- Background Circles -->
+    <div class="background-effect">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+        <div class="circle circle-5"></div>
+        <div class="circle circle-6"></div>
+    </div>
+
+    <!-- Tilt-enabled Form Container -->
+    <div class="form-container w-full max-w-xl p-8 md:p-12 z-10" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3">
+        <h2 class="heading-animated mb-8">Select a Category</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            <button onclick="goToCategory('textbooks')" class="bg-yellow-400 hover:bg-yellow-500 text-black category-btn slide-in-left delay-[0.2s]">📚 Textbooks</button>
+            <button onclick="goToCategory('electronics')" class="bg-green-400 hover:bg-green-500 text-black category-btn slide-in-right delay-2">💻 Electronics</button>
+            <button onclick="goToCategory('furniture')" class="bg-blue-400 hover:bg-blue-500 text-black category-btn slide-in-left delay-4">🪑 Furniture</button>
+            <button onclick="goToCategory('clothing')" class="bg-red-400 hover:bg-red-500 text-black category-btn slide-in-right delay-6">👕 Clothing</button>
+        </div>
+
+        <div class="text-center">
+            <a href="index.html" class="text-lg hover:underline hover:text-yellow-200 transition">⬅ Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        VanillaTilt.init(document.querySelector(".form-container"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.3,
+        });
+
+        function goToCategory(category) {
+            const urlMap = {
+                textbooks: 'textbooks.html',
+                electronics: 'electronics.html',
+                furniture: 'furniture.html',
+                clothing: 'clothing.html'
+            };
+            window.location.href = urlMap[category];
+        }
+    </script>
+
+</body>
+
+</html>

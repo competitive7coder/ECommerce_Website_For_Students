@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Cart - Sign In</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-indigo-600 text-white shadow-lg fixed top-0 left-0 right-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="text-3xl font-bold">The Campus<span class="text-yellow-300">Cart</span></a>
+        </div>
+    </nav>
+
+    <!-- Sign In Form -->
+    <div class="flex justify-center items-center min-h-screen pt-24 px-4">
+        <div class="bg-white rounded-xl shadow-md w-full max-w-md p-8">
+            <h2 class="text-2xl font-bold text-center mb-6 text-indigo-700">Sign In</h2>
+
+            <form id="signinForm">
+                <!-- Email Input -->
+                <div class="mb-4" id="email-field">
+                    <label class="block text-gray-700 mb-1 font-medium">Gmail ID</label>
+                    <input type="email" name="email" placeholder="example@gmail.com" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+                </div>
+
+                <!-- Mobile Input -->
+                <div class="mb-4 hidden" id="mobile-field">
+                    <label class="block text-gray-700 mb-1 font-medium">Mobile Number</label>
+                    <input type="tel" name="mobile" placeholder="Enter your mobile number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                </div>
+
+                <!-- Password -->
+                <div class="mb-2 relative">
+                    <label class="block text-gray-700 mb-1 font-medium">Password</label>
+                    <div class="relative">
+                        <input type="password" id="passwordInput" name="password" placeholder="Enter your password" title="Password field" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 pr-10" />
+                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 focus:outline-none">
+                            👁️
+                        </button>
+                    </div>
+                    <p id="strengthText" class="text-sm mt-1 font-semibold"></p>
+                </div>
+
+                <div class="mb-4 text-right">
+                    <button type="button" id="forgotPasswordBtn" class="text-sm text-indigo-600 hover:underline">
+                        Forgot Password?
+                    </button>
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition">Sign
+                    In</button>
+            </form>
+
+            <!-- Divider -->
+            <div class="my-6 flex items-center">
+                <div class="flex-grow h-px bg-gray-300"></div>
+                <span class="px-3 text-sm text-gray-500">OR</span>
+                <div class="flex-grow h-px bg-gray-300"></div>
+            </div>
+
+            <!-- Join using Mobile Option -->
+            <button id="toggleModeBtn" class="w-full bg-yellow-400 text-indigo-900 font-semibold py-2 rounded-lg hover:bg-yellow-500 transition">
+                Join Using Mobile
+            </button>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h3 class="text-xl font-bold mb-4 text-indigo-700">Reset Password</h3>
+            <label class="block text-gray-700 mb-1">Enter your Gmail ID or Mobile Number</label>
+            <input id="recoveryInput" type="text" placeholder="example@gmail.com or 1234567890" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 mb-4" />
+
+            <button id="generateCodeBtn" class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition">
+                Generate Verification Code
+            </button>
+
+            <!-- OTP Box -->
+            <div id="otpContainer" class="hidden mt-4">
+                <label class="block text-gray-700 mb-1">Enter OTP</label>
+                <div class="flex space-x-2 justify-center">
+                    <input maxlength="1" class="otp-input w-10 text-center border rounded-md p-2" title="Enter OTP digit" placeholder="-" />
+                    <input maxlength="1" class="otp-input w-10 text-center border rounded-md p-2" title="Enter OTP digit" placeholder="-" />
+                    <input maxlength="1" class="otp-input w-10 text-center border rounded-md p-2" title="Enter OTP digit" placeholder="-" />
+                    <input maxlength="1" class="otp-input w-10 text-center border rounded-md p-2" title="Enter OTP digit" placeholder="-" />
+                    <input maxlength="1" class="otp-input w-10 text-center border rounded-md p-2" title="Enter OTP digit" placeholder="-" />
+                    <input maxlength="1" class="otp-input w-10 text-center border rounded-md p-2" title="Enter OTP digit" placeholder="-" />
+                </div>
+            </div>
+
+            <div id="codeDisplay" class="mt-4 hidden text-center text-green-600 font-bold"></div>
+
+            <button id="closeModalBtn" class="mt-4 w-full text-gray-600 hover:text-gray-800 text-sm underline">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('toggleModeBtn');
+        const emailField = document.getElementById('email-field');
+        const mobileField = document.getElementById('mobile-field');
+        let isMobileMode = false;
+
+        toggleBtn.addEventListener('click', () => {
+            isMobileMode = !isMobileMode;
+            emailField.classList.toggle('hidden', isMobileMode);
+            mobileField.classList.toggle('hidden', !isMobileMode);
+            toggleBtn.textContent = isMobileMode ? 'Join Using Gmail' : 'Join Using Mobile';
+        });
+
+        document.getElementById('signinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Simulated Sign In");
+        });
+
+        // Show/Hide Password
+        const passwordInput = document.getElementById("passwordInput");
+        const togglePasswordBtn = document.getElementById("togglePassword");
+
+        togglePasswordBtn.addEventListener("click", () => {
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+            togglePasswordBtn.textContent = type === "password" ? "👁️" : "🙈";
+        });
+
+        // Password strength meter
+        passwordInput.addEventListener("input", () => {
+            const value = passwordInput.value;
+            const strengthText = document.getElementById("strengthText");
+            if (value.length === 0) {
+                strengthText.textContent = "";
+                strengthText.className = "text-sm mt-1 font-semibold";
+            } else if (value.length < 6) {
+                strengthText.textContent = "Weak Password";
+                strengthText.className = "text-sm mt-1 font-semibold text-red-500";
+            } else if (!/[A-Z]/.test(value) || !/[0-9]/.test(value)) {
+                strengthText.textContent = "Moderate Password";
+                strengthText.className = "text-sm mt-1 font-semibold text-yellow-500";
+            } else {
+                strengthText.textContent = "Strong Password";
+                strengthText.className = "text-sm mt-1 font-semibold text-green-600";
+            }
+        });
+
+        // Forgot Password Modal Logic
+        const modal = document.getElementById('forgotModal');
+        const forgotBtn = document.getElementById('forgotPasswordBtn');
+        const closeModal = document.getElementById('closeModalBtn');
+        const codeBtn = document.getElementById('generateCodeBtn');
+        const codeDisplay = document.getElementById('codeDisplay');
+        const otpContainer = document.getElementById('otpContainer');
+
+        forgotBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+            codeDisplay.classList.add('hidden');
+            otpContainer.classList.add('hidden');
+            document.getElementById('recoveryInput').value = "";
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            clearInterval(timer);
+            codeBtn.disabled = false;
+            codeBtn.textContent = 'Generate Verification Code';
+        });
+
+        let timer;
+
+        function startCountdown() {
+            let timeLeft = 60;
+            codeBtn.disabled = true;
+            codeBtn.textContent = `Resend OTP in ${timeLeft}s`;
+
+            timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    codeBtn.textContent = `Resend OTP in ${timeLeft}s`;
+                } else {
+                    clearInterval(timer);
+                    codeBtn.disabled = false;
+                    codeBtn.textContent = 'Generate Verification Code';
+                }
+            }, 1000);
+        }
+
+        codeBtn.addEventListener('click', () => {
+            const input = document.getElementById('recoveryInput').value.trim();
+            if (!input) {
+                alert("Please enter a Gmail ID or Mobile Number");
+                return;
+            }
+            const code = Math.floor(100000 + Math.random() * 900000);
+            codeDisplay.textContent = `Your verification code is: ${code}`;
+            codeDisplay.classList.remove('hidden');
+            otpContainer.classList.remove('hidden');
+            startCountdown();
+        });
+    </script>
+
+</body>
+
+</html>

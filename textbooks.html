@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Textbooks - CampusCart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold text-center text-indigo-700 mb-8">Textbooks from Sellers</h2>
+
+        <div id="textbookGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Textbooks will be injected here -->
+        </div>
+
+        <a href="buy.html" class="block text-center mt-8 text-sm text-indigo-600 hover:underline">⬅ Back to Catagory</a>
+    </div>
+
+    <script>
+        const textbooks = [{
+            seller: "Priya S.",
+            title: "Engineering Mathematics",
+            description: "Great condition, used for 1 semester only.",
+            price: "₹350",
+            image: "https://rukminim2.flixcart.com/image/850/1000/xif0q/book/u/g/r/higher-engineering-mathematics-original-imah8h47fuhdgsfc.jpeg?q=90&crop=false"
+        }, {
+            seller: "Rahul T.",
+            title: "Data Structures in C",
+            description: "Slightly used, no markings.",
+            price: "₹420",
+            image: "https://m.media-amazon.com/images/I/91TLZFMKL+L._AC_UF1000,1000_QL80_.jpg"
+        }, {
+            seller: "Ayesha K.",
+            title: "Operating Systems Concepts",
+            description: "Like new, hardcover.",
+            price: "₹500",
+            image: "https://m.media-amazon.com/images/I/71cuZm5fPHL._AC_UF1000,1000_QL80_.jpg"
+        }];
+
+        const grid = document.getElementById("textbookGrid");
+
+        textbooks.forEach((book, index) => {
+            const card = document.createElement("div");
+            card.className = "bg-white rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition";
+            card.onclick = () => {
+                localStorage.setItem("selectedBook", JSON.stringify(book));
+                window.location.href = "item-details.html";
+            };
+            card.innerHTML = `
+        <img src="${book.image}" alt="${book.title}" class="w-full h-52 object-cover rounded-md mb-4">
+        <h3 class="text-xl font-semibold text-gray-800">${book.title}</h3>
+        <p class="text-sm text-gray-600 mb-2">${book.description}</p>
+        <p class="text-indigo-600 font-bold mb-2">${book.price}</p>
+        <p class="text-sm text-gray-500">Seller: ${book.seller}</p>
+      `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account - CampusSwap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-yellow-400 py-6 shadow-md text-center">
+        <h1 class="text-4xl font-extrabold">👤 My Account</h1>
+    </header>
+
+    <!-- Mobile Nav Toggle -->
+    <div class="md:hidden flex justify-between items-center px-4 mt-4">
+        <button onclick="toggleMobileNav()" class="bg-blue-900 text-yellow-400 px-4 py-2 rounded-xl font-semibold">
+      ☰ Menu
+    </button>
+    </div>
+
+    <!-- Layout -->
+    <div class="flex flex-col md:flex-row max-w-7xl mx-auto mt-6 px-4">
+
+        <!-- Sidebar -->
+        <nav id="sidebarNav" class="md:w-1/4 mb-6 md:mb-0 md:mr-6 hidden md:block">
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+                <h2 class="text-xl font-bold mb-4 text-blue-900">📂 Navigation</h2>
+                <button onclick="showSection('userDetails')" class="w-full mb-4 bg-blue-900 text-yellow-400 font-semibold px-4 py-3 rounded-xl hover:bg-blue-800 transition">
+          👤 User Details
+        </button>
+                <button onclick="showSection('myListings')" class="w-full bg-blue-900 text-yellow-400 font-semibold px-4 py-3 rounded-xl hover:bg-blue-800 transition">
+          📋 My Listings
+        </button>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="md:w-3/4 space-y-10">
+
+            <!-- User Details -->
+            <section id="userDetails" class="bg-white p-6 rounded-2xl shadow-md">
+                <h2 class="text-2xl font-bold text-blue-900 mb-4">👤 User Details</h2>
+                <p class="text-gray-700 mb-2"><strong>Name:</strong> John Doe</p>
+                <p class="text-gray-700 mb-2"><strong>Email:</strong> johndoe@example.com</p>
+                <p class="text-gray-700"><strong>Phone:</strong> 9876543210</p>
+            </section>
+
+            <!-- My Listings -->
+            <section id="myListings" class="bg-white p-6 rounded-2xl shadow-md hidden">
+                <h2 class="text-2xl font-bold text-blue-900 mb-6">📋 My Listings</h2>
+                <div id="listingContainer" class="grid gap-6"></div>
+            </section>
+
+            <!-- Back to Home -->
+            <div class="text-center">
+                <a href="index.html" class="inline-block bg-blue-900 text-yellow-400 font-semibold px-6 py-3 rounded-xl hover:bg-blue-800 transition hover:scale-105">
+          ⬅️ Back to Home
+        </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="md:hidden fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
+        <div class="p-6 space-y-4">
+            <h2 class="text-xl font-bold text-blue-900 mb-4">📂 Navigation</h2>
+            <button onclick="showSection('userDetails'); toggleMobileNav()" class="w-full bg-blue-900 text-yellow-400 font-semibold px-4 py-3 rounded-xl hover:bg-blue-800 transition">
+        👤 User Details
+      </button>
+            <button onclick="showSection('myListings'); toggleMobileNav()" class="w-full bg-blue-900 text-yellow-400 font-semibold px-4 py-3 rounded-xl hover:bg-blue-800 transition">
+        📋 My Listings
+      </button>
+        </div>
+    </div>
+
+    <!-- Backdrop -->
+    <div id="backdrop" class="hidden fixed inset-0 bg-black bg-opacity-40 z-40" onclick="toggleMobileNav()"></div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 mt-16 py-5 text-center text-sm text-yellow-400">
+        <p>&copy; 2025 CampusSwap. All rights reserved.</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        function showSection(id) {
+            document.getElementById('userDetails').classList.add('hidden');
+            document.getElementById('myListings').classList.add('hidden');
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function toggleMobileNav() {
+            const drawer = document.getElementById("mobileDrawer");
+            const backdrop = document.getElementById("backdrop");
+            const isOpen = drawer.classList.contains("translate-x-0");
+
+            if (isOpen) {
+                drawer.classList.replace("translate-x-0", "-translate-x-full");
+                backdrop.classList.add("hidden");
+            } else {
+                drawer.classList.replace("-translate-x-full", "translate-x-0");
+                backdrop.classList.remove("hidden");
+            }
+        }
+
+        function loadListings() {
+            const container = document.getElementById("listingContainer");
+            const listings = JSON.parse(localStorage.getItem("myListings") || "[]");
+
+            container.innerHTML = "";
+
+            if (listings.length === 0) {
+                container.innerHTML = "<p class='text-gray-600 text-lg'>You have no listings yet.</p>";
+                return;
+            }
+
+            listings.forEach((item, index) => {
+                        const card = document.createElement("div");
+                        card.className = "bg-gray-50 border border-gray-300 p-6 rounded-xl shadow";
+
+                        let imagesHTML = "";
+                        if (item.images && item.images.length > 0) {
+                            imagesHTML = `
+            <div class="flex flex-wrap justify-center gap-2 mb-4">
+              ${item.images.map(img => `<img src="${img}" class="w-28 h-28 object-cover rounded-lg border border-gray-300" />`).join('')}
+            </div>
+          `;
+        }
+
+        card.innerHTML = `
+          <h3 class="text-2xl font-extrabold text-blue-900 mb-4">${item.name}</h3>
+          ${imagesHTML}
+          <p class="text-gray-700 mb-1">${item.description}</p>
+          <p><strong>💰 Price:</strong> ₹${item.price} ${item.negotiable ? "(Negotiable)" : ""}</p>
+          <p><strong>📦 Condition:</strong> ${item.condition}</p>
+          <p><strong>📞 Contact:</strong> ${item.contact}</p>
+          <p><strong>📍 Address:</strong> ${item.address}</p>
+          <p><strong>💳 Payment:</strong> ${item.payment}</p>
+          <button onclick="deleteListing(${index})" class="mt-4 w-full bg-red-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-red-700 transition">
+            🗑️ Delete
+          </button>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function deleteListing(index) {
+      const listings = JSON.parse(localStorage.getItem("myListings") || "[]");
+      listings.splice(index, 1);
+      localStorage.setItem("myListings", JSON.stringify(listings));
+      loadListings();
+    }
+
+    document.addEventListener("DOMContentLoaded", loadListings);
+    </script>
+</body>
+
+</html>

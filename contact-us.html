@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusCart - Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6C47FF',
+                        accent: '#FBCB0A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .btn {
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .tilt-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        
+        .tilt-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+        /* 3D Effect for Cards */
+        
+        .card-container {
+            perspective: 1000px;
+            /* Creates a 3D space */
+        }
+        /* Automatic Color Change for Text */
+        
+        @keyframes colorChange {
+            0% {
+                color: #ff6347;
+                /* Tomato */
+            }
+            25% {
+                color: #ffa500;
+                /* Orange */
+            }
+            50% {
+                color: #32cd32;
+                /* Lime Green */
+            }
+            75% {
+                color: #1e90ff;
+                /* Dodger Blue */
+            }
+            100% {
+                color: #ff6347;
+                /* Tomato */
+            }
+        }
+        
+        .color-change {
+            animation: colorChange 5s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="relative bg-gradient-to-r from-indigo-600 via-blue-900 to-purple-900 text-white font-sans overflow-x-hidden">
+
+    <!-- Animated Background Elements -->
+    <div class="absolute top-10 left-10 w-40 h-40 bg-pink-400 opacity-20 rounded-full animate-ping"></div>
+    <div class="absolute bottom-16 right-12 w-56 h-56 bg-yellow-400 opacity-25 rounded-full animate-pulse"></div>
+    <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-blue-300 opacity-20 rounded-full animate-bounce blur-2xl"></div>
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none animate-float-pattern"></div>
+
+    <!-- Return Home Button -->
+    <div class="pt-8 px-6 relative z-10">
+        <a href="index.html" class="inline-block cursor-pointer bg-yellow-300 text-indigo-800 font-bold text-lg px-6 py-2 rounded-full shadow-lg hover:bg-yellow-400 btn">
+          ← Return Home
+        </a>
+    </div>
+
+    <!-- Page Content -->
+    <div class="pt-20 px-10 relative z-10">
+
+        <!-- Main Content -->
+        <main class="pb-10 grid md:grid-cols-2 gap-10 items-start">
+
+            <!-- Contact Info -->
+            <div class="card-container">
+                <div class="tilt-card tilt bg-indigo-700 bg-opacity-40 p-6 rounded-3xl shadow-2xl transition-all space-y-8" data-tilt data-tilt-max="15" data-tilt-speed="400">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-accent text-black w-12 h-12 flex items-center justify-center rounded-full text-xl">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold color-change">Call Us</h3>
+                            <!-- Automatic Color Change -->
+                            <p class="text-base mt-1">We are available 24/7, 7 days a week.</p>
+                            <p class="text-base mt-1">Phone: +880161112222</p>
+                        </div>
+                    </div>
+                    <hr class="border-indigo-400" />
+                    <div class="flex items-start gap-4">
+                        <div class="bg-accent text-black w-12 h-12 flex items-center justify-center rounded-full text-xl">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold color-change">Write To Us</h3>
+                            <!-- Automatic Color Change -->
+                            <p class="text-base mt-1">Fill out our form, and we'll respond within 24 hours.</p>
+                            <p class="text-base mt-1">Email: customer@exclusive.com</p>
+                            <p class="text-base">support@exclusive.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="card-container">
+                <form class="tilt-card tilt bg-indigo-700 bg-opacity-40 p-6 rounded-3xl shadow-2xl space-y-4" data-tilt data-tilt-max="15" data-tilt-speed="400">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <input type="text" placeholder="Your Name *" class="bg-white/10 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-yellow-300 text-lg" />
+                        <input type="email" placeholder="Your Email *" class="bg-white/10 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-yellow-300 text-lg" />
+                        <input type="tel" placeholder="Your Phone *" class="bg-white/10 text-white px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-yellow-300 text-lg" />
+                    </div>
+                    <textarea placeholder="Your Message" class="w-full bg-white/10 text-white px-4 py-3 h-40 rounded-lg outline-none resize-none focus:ring-2 focus:ring-yellow-300 text-lg"></textarea>
+                    <button type="submit" class="bg-accent text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition-all btn text-lg">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- 3D Mouse Movement Effect -->
+    <script>
+        const cards = document.querySelectorAll('.tilt-card');
+
+        window.addEventListener('mousemove', (e) => {
+            const {
+                clientX: mouseX,
+                clientY: mouseY
+            } = e;
+            const {
+                innerWidth: width,
+                innerHeight: height
+            } = window;
+
+            // Calculate the rotation based on mouse position
+            const rotateX = ((mouseY / height) - 0.5) * 30; // Range: -15 to 15
+            const rotateY = ((mouseX / width) - 0.5) * -30; // Range: -15 to 15
+
+            // Apply the rotation to each card
+            cards.forEach(card => {
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+        });
+    </script>
+
+</body>
+
+</html>

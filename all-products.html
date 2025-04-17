@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Cart - Item Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50">
+
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Featured <span class="text-yellow-300">Listings</span></h2>
+
+            <!-- Item Details (Shown at the top, initially hidden) -->
+            <div id="item-details" class="bg-white rounded-xl overflow-hidden shadow-md p-6 mb-12 hidden">
+                <!-- The selected item's details will be injected here -->
+            </div>
+
+            <!-- Listing Cards -->
+            <div id="listing-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item Cards will be injected here -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const listings = [{
+            id: 1,
+            name: "Data Structures and Algorithms in JAVA",
+            image: "https://i.ytimg.com/vi/XnHg_HeX6IE/sddefault.jpg",
+            price: "$45",
+            description: "Great condition, barely used. All chapters intact.",
+            postedDate: "3 days ago",
+            location: "IT department",
+            ownerName: "John Doe",
+            ownerCollege: "University of Technology",
+            ownerMobile: "(123) 456-7890",
+            ownerEmail: "johndoe@email.com",
+            ownerDepartment: "Computer Science",
+            ownerYear: "Sophomore",
+            ownerAddress: "1234 Elm St, Some City, Some State",
+            ownerProfilePic: "https://www.w3schools.com/w3images/avatar2.png"
+        }, {
+            id: 2,
+            name: "T Scale",
+            image: "https://5.imimg.com/data5/SELLER/Default/2022/9/IV/QU/VB/85483894/t-square-perfect-accuracy-with-blue-cover-500x500.jpg",
+            price: "$25",
+            description: "Technical drawing instrument used by draftsmen primarily as a guide for drawing horizontal lines on a drafting table.",
+            postedDate: "1 day ago",
+            location: "Mechanical Department",
+            ownerName: "Alice Smith",
+            ownerCollege: "Technical University",
+            ownerMobile: "(987) 654-3210",
+            ownerEmail: "alicesmith@email.com",
+            ownerDepartment: "Mechanical Engineering",
+            ownerYear: "Senior",
+            ownerAddress: "4567 Oak Rd, Cityville, State",
+            ownerProfilePic: "https://www.w3schools.com/w3images/avatar5.png"
+        }, {
+            id: 3,
+            name: "Lab Coat",
+            image: "https://rukminim3.flixcart.com/image/850/1000/kw104nk0/hospital-scrub/b/s/0/unisex-lab-coat-apron-cotton-white-colour-for-medical-students-original-imag8sgsgwkebmh7.jpeg?q=20&crop=false",
+            price: "$120",
+            description: "Cotton lab coats are known for their softness and breathability, making them comfortable for long shifts.",
+            postedDate: "3 days ago",
+            location: "Basic Science Department",
+            ownerName: "David Johnson",
+            ownerCollege: "College of Medicine",
+            ownerMobile: "(555) 123-4567",
+            ownerEmail: "davidjohnson@email.com",
+            ownerDepartment: "Medical Sciences",
+            ownerYear: "Graduate",
+            ownerAddress: "789 Pine St, Medville, State",
+            ownerProfilePic: "https://www.w3schools.com/w3images/avatar3.png"
+        }, {
+            id: 4,
+            name: "Silicon I3 Gaming Second Hand Laptop",
+            image: "https://img1.exportersindia.com/product_images/bc-full/2022/6/4339233/wholesale-used-computer-laptop-x220-core-i5-1656218099-6415929.jpeg",
+            price: "$80",
+            description: "For Colleges, Home, Institutes, Offices, Shops.",
+            postedDate: "5 days ago",
+            location: "B Block",
+            ownerName: "Emily White",
+            ownerCollege: "University of Science",
+            ownerMobile: "(800) 234-5678",
+            ownerEmail: "emilywhite@email.com",
+            ownerDepartment: "Information Technology",
+            ownerYear: "Junior",
+            ownerAddress: "101 Maple St, Tech City, State",
+            ownerProfilePic: "https://www.w3schools.com/w3images/avatar4.png"
+        }];
+
+        // Display all cards
+        function displayListingCards() {
+            const cardsContainer = document.getElementById('listing-cards');
+            cardsContainer.innerHTML = '';
+            listings.forEach(listing => {
+                const card = document.createElement('div');
+                card.classList.add('bg-white', 'rounded-xl', 'shadow-md', 'p-4', 'cursor-pointer', 'hover:shadow-lg');
+                card.innerHTML = `
+                    <img src="${listing.image}" alt="${listing.name}" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-lg font-semibold text-gray-800">${listing.name}</h4>
+                    <p class="text-gray-600 text-sm">${listing.price}</p>
+                    <p class="text-gray-600 text-sm mt-2">${listing.description}</p>
+                `;
+                card.addEventListener('click', () => displayListingDetails(listing));
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        // Display selected item details at top and scroll to it
+        function displayListingDetails(listing) {
+            const detailsContainer = document.getElementById('item-details');
+            detailsContainer.classList.remove('hidden');
+            detailsContainer.innerHTML = `
+                <div class="flex flex-col lg:flex-row items-center">
+                    <img src="${listing.image}" alt="${listing.name}" class="w-full lg:w-1/3 h-96 object-cover rounded-lg shadow-md mb-6 lg:mb-0">
+                    <div class="lg:ml-8 mt-6 lg:mt-0">
+                        <h3 class="text-3xl font-bold text-gray-800">${listing.name}</h3>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded mt-2 inline-block">${listing.price}</span>
+                        <p class="text-gray-600 text-sm mt-4">${listing.description}</p>
+                        <div class="flex justify-between items-center mt-6">
+                            <span class="text-xs text-gray-500">Posted ${listing.postedDate}</span>
+                            <span class="text-xs text-gray-500">${listing.location}</span>
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="text-xl font-semibold text-gray-800">Contact Information</h4>
+                            <div class="flex items-center mt-4">
+                                <img src="${listing.ownerProfilePic}" alt="${listing.ownerName}" class="w-16 h-16 rounded-full border-2 border-gray-300">
+                                <div class="ml-4">
+                                    <p class="text-gray-600"><strong>Name:</strong> ${listing.ownerName}</p>
+                                    <p class="text-gray-600"><strong>College:</strong> ${listing.ownerCollege}</p>
+                                    <p class="text-gray-600"><strong>Department:</strong> ${listing.ownerDepartment}</p>
+                                    <p class="text-gray-600"><strong>Year:</strong> ${listing.ownerYear}</p>
+                                    <p class="text-gray-600"><strong>Phone:</strong> ${listing.ownerMobile}</p>
+                                    <p class="text-gray-600"><strong>Email:</strong> <a href="mailto:${listing.ownerEmail}" class="text-indigo-600">${listing.ownerEmail}</a></p>
+                                    <p class="text-gray-600"><strong>Address:</strong> ${listing.ownerAddress}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            detailsContainer.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+        // Initialize listings
+        displayListingCards();
+    </script>
+
+</body>
+
+</html>

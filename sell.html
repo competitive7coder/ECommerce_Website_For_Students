@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Item - CampusSwap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+         :root {
+            --primary-color: #facc15;
+            /* Yellow */
+            --secondary-color: #1e3a8a;
+            /* Blue */
+            --accent-color: #f97316;
+            /* Orange */
+        }
+        /* Body and Main Container */
+        
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .background-effect .circle {
+            max-width: 100vw;
+            max-height: 100vh;
+        }
+        
+        body {
+            background-color: #f7fafc;
+            color: #2d3748;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            position: relative;
+        }
+        /* Animated Background Effects */
+        
+        .background-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .background-effect .circle {
+            position: absolute;
+            border-radius: 50%;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        /* Circles at Left Top */
+        
+        .background-effect .circle-1 {
+            top: 10%;
+            left: 10%;
+            width: 9rem;
+            height: 9rem;
+            background-color: #ec4899;
+            /* Pink */
+            opacity: 0.3;
+            animation-name: pulse;
+        }
+        
+        .background-effect .circle-2 {
+            top: 20%;
+            left: 15%;
+            width: 10rem;
+            height: 10rem;
+            background-color: #f59e0b;
+            /* Yellow */
+            opacity: 0.2;
+            animation-name: bounce;
+        }
+        
+        .background-effect .circle-3 {
+            top: 50%;
+            left: 33%;
+            width: 7rem;
+            height: 7rem;
+            background-color: #93c5fd;
+            /* Blue */
+            opacity: 0.1;
+            animation-name: float-pattern;
+        }
+        /* New Circles for More Effects */
+        
+        .background-effect .circle-4 {
+            bottom: 10%;
+            left: 12%;
+            width: 8rem;
+            height: 8rem;
+            background-color: #f87171;
+            /* Red */
+            opacity: 0.2;
+            animation-name: bounce;
+        }
+        
+        .background-effect .circle-5 {
+            top: 40%;
+            left: 50%;
+            width: 6rem;
+            height: 6rem;
+            background-color: #10b981;
+            /* Green */
+            opacity: 0.25;
+            animation-name: float-pattern;
+        }
+        
+        .background-effect .circle-6 {
+            top: 70%;
+            left: 10%;
+            width: 6rem;
+            height: 6rem;
+            background-color: #fbbf24;
+            /* Yellow */
+            opacity: 0.2;
+            animation-name: pulse;
+        }
+        
+        .background-effect .circle-7 {
+            bottom: 30%;
+            right: 5%;
+            width: 12rem;
+            height: 12rem;
+            background-color: #9333ea;
+            /* Purple */
+            opacity: 0.3;
+            animation-name: bounce;
+        }
+        
+        .background-effect .circle-8 {
+            bottom: 60%;
+            left: 80%;
+            width: 13rem;
+            height: 13rem;
+            background-color: #60a5fa;
+            /* Light Blue */
+            opacity: 0.15;
+            animation-name: pulse;
+        }
+        
+        .background-effect .pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        /* Keyframe animations */
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float-pattern {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(15px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        /* Form Container with Transparent Background and Blur Effect */
+        
+        .form-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 0;
+            background-color: rgba(255, 255, 255, 0);
+            /* Transparent background */
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            /* Apply blur effect */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .form-container .form {
+            padding: 30px;
+            transition: transform 0.3s ease-in-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        /* Heading Styles with Automatic Text Color Change */
+        
+        form,
+        h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+        }
+        
+        h2,
+        .section-heading,
+        .input-field label {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            animation: textColorChange 5s infinite;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        @keyframes textColorChange {
+            0% {
+                color: #1e3a8a;
+                /* Blue */
+            }
+            25% {
+                color: #facc15;
+                /* Yellow */
+            }
+            50% {
+                color: #f97316;
+                /* Orange */
+            }
+            75% {
+                color: #10b981;
+                /* Green */
+            }
+            100% {
+                color: #1e3a8a;
+                /* Blue */
+            }
+        }
+        /* Input and Select Styles */
+        
+        .input-field input,
+        .input-field select,
+        .input-field textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: white;
+        }
+        
+        .input-field input:focus,
+        .input-field select:focus,
+        .input-field textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 8px var(--secondary-color);
+        }
+        /* Button Styles with Hover Effect */
+        
+        .button-primary {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 24px;
+        }
+        
+        .button-primary:hover {
+            background-color: #1e6ded;
+            transform: scale(1.05);
+        }
+        /* Return Home Button */
+        
+        .button-home {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 16px;
+        }
+        
+        .button-home:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+        /* Fade-In Animation */
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class=" overflow-x-hidden background-effect bg-gradient-to-r from-indigo-600 via-blue-900 to-purple-900">
+        <!-- Animated Background Circles and Pattern -->
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+        <div class="circle circle-5"></div>
+        <div class="circle circle-6"></div>
+        <div class="circle circle-7"></div>
+        <div class="circle circle-8"></div>
+        <div class="pattern"></div>
+    </div>
+
+    <div class="form-container bg-gradient-to-r from-indigo-600 via-blue-900 to-purple-900">
+        <form class="form space-y-6 fade-in">
+            <h2>Item Details</h2>
+
+            <!-- Product Images -->
+            <div class="input-field">
+                <label class="section-heading">Upload 2-3 Images</label>
+                <input type="file" accept="image/*" multiple title="Upload images of the product" placeholder="Choose images">
+            </div>
+
+            <!-- Product Name -->
+            <div class="input-field">
+                <label class="section-heading">Product Name</label>
+                <input type="text" placeholder="e.g. MacBook Air 2020" required>
+            </div>
+
+            <!-- Product Description -->
+            <div class="input-field">
+                <label class="section-heading">Product Description</label>
+                <textarea rows="4" placeholder="Detailed description including features, condition, etc." required></textarea>
+            </div>
+
+            <!-- Condition -->
+            <div class="input-field">
+                <label class="section-heading" for="condition-select">Condition</label>
+                <select id="condition-select">
+                    <option value="">Select condition</option>
+                    <option value="new">New</option>
+                    <option value="like-new">Like New</option>
+                    <option value="good">Good</option>
+                    <option value="fair">Fair</option>
+                    <option value="used">Used</option>
+                </select>
+            </div>
+
+            <!-- Price -->
+            <div class="input-field">
+                <label class="section-heading">Price (₹)</label>
+                <input type="number" placeholder="e.g. 5000" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="button-primary fade-in">Submit Listing</button>
+            </div>
+
+
+            <!-- Return Home Button -->
+            <div class="text-center">
+                <button type="button" class="button-home fade-in" onclick="window.location.href='index.html';">Return Home</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

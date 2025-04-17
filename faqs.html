@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-500">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusCart | FAQs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+        
+        @keyframes slideLeftToRight {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            25%,
+            75% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+        
+        @keyframes slideRightToLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            25%,
+            75% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+        }
+        
+        .faq-item {
+            animation-duration: 10s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+        
+        .faq-item:nth-child(odd) {
+            animation-name: slideLeftToRight;
+        }
+        
+        .faq-item:nth-child(even) {
+            animation-name: slideRightToLeft;
+        }
+        
+        @keyframes colorChange {
+            0% {
+                color: #fbbf24;
+                /* Starting color */
+            }
+            25% {
+                color: #f59e0b;
+                /* Intermediate color */
+            }
+            50% {
+                color: #4ade80;
+                /* Another color */
+            }
+            75% {
+                color: #22d3ee;
+                /* Another color */
+            }
+            100% {
+                color: #fbbf24;
+                /* Back to starting color */
+            }
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fbbf24;
+            /* Initial color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: colorChange 5s infinite ease-in-out;
+            /* Applying the animation */
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+        
+        h2:hover {
+            color: #f59e0b;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        summary {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        summary:hover {
+            color: #fbbf24;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .details-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #d1d5db;
+            text-align: justify;
+            letter-spacing: 0.5px;
+        }
+        
+        details[open] .details-content p {
+            color: #e2e8f0;
+        }
+        
+        details:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .paused-animation {
+            animation-play-state: paused !important;
+        }
+        
+        .no-hover:hover {
+            transform: none !important;
+            color: inherit !important;
+            text-shadow: none !important;
+        }
+        
+        .return-home-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1f2937;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .return-home-btn:hover {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        .return-home-btn:focus {
+            outline: none;
+            border: 2px solid #fbbf24;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .return-home-btn:active {
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-indigo-600 via-blue-900 to-purple-900 dark:text-white transition-colors duration-500 relative">
+
+    <!-- Floating Effects -->
+    <div class="absolute top-10 left-10 w-40 h-40 bg-pink-400 opacity-20 rounded-full animate-ping pointer-events-none"></div>
+    <div class="absolute bottom-16 right-12 w-56 h-56 bg-yellow-400 opacity-25 rounded-full animate-pulse pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-blue-300 opacity-20 rounded-full animate-bounce blur-2xl pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none"></div>
+
+    <!-- FAQ Section -->
+    <section class="min-h-screen py-16 px-6 md:px-20 fade-in-section relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-10 text-center">Frequently Asked Questions</h2>
+
+            <div class="faq-container space-y-5">
+                <details class="bg-white/10 p-6 rounded-lg shadow-lg faq-item">
+                    <summary>❓ What is CampusCart?</summary>
+                    <div class="details-content text-gray-100 mt-2 text-sm">
+                        <p>CampusCart is a student-run marketplace where college students can buy, sell, or trade used or new essentials within their campus community.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white/10 p-6 rounded-lg shadow-lg faq-item">
+                    <summary>🛒 How do I list an item for sale?</summary>
+                    <div class="details-content text-gray-100 mt-2 text-sm">
+                        <p>You can list an item by signing in, clicking "Sell Item", filling out the item details, setting a price, and uploading photos. Your listing will appear instantly.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white/10 p-6 rounded-lg shadow-lg faq-item">
+                    <summary>💰 Is there a fee to use CampusCart?</summary>
+                    <div class="details-content text-gray-100 mt-2 text-sm">
+                        <p>Nope! CampusCart is completely free to use for students. We just help you connect with others on campus.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white/10 p-6 rounded-lg shadow-lg faq-item">
+                    <summary>📦 How do I arrange delivery or pickup?</summary>
+                    <div class="details-content text-gray-100 mt-2 text-sm">
+                        <p>After contacting the seller, you can mutually decide on a meeting point on campus. Most users choose dorm lobbies, libraries, or cafeterias.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white/10 p-6 rounded-lg shadow-lg faq-item">
+                    <summary>🔐 Is it safe to buy and sell here?</summary>
+                    <div class="details-content text-gray-100 mt-2 text-sm">
+                        <p>Yes! Only verified campus emails can register, which keeps the community secure. Always meet in public areas and avoid sharing personal info.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white/10 p-6 rounded-lg shadow-lg faq-item">
+                    <summary>📱 Is there a mobile app?</summary>
+                    <div class="details-content text-gray-100 mt-2 text-sm">
+                        <p>We're working on it! For now, CampusCart is fully mobile-friendly and works great in your phone’s browser.</p>
+                    </div>
+                </details>
+
+                <details class="bg-white/10 p-6 rounded-lg shadow-lg faq-item">
+                    <summary>📩 I have more questions!</summary>
+                    <div class="details-content text-gray-100 mt-2 text-sm">
+                        <p>No problem! Reach out to us at support@campuscart.com or use the feedback form on the homepage.</p>
+                    </div>
+                </details>
+            </div>
+
+
+            <div class="mt-12 text-center">
+                <a href="index.html" class="return-home-btn">Return Home</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Pause animation on open FAQ
+        document.querySelectorAll('details').forEach((detail) => {
+            const summary = detail.querySelector('summary');
+            summary.addEventListener('click', () => {
+                detail.classList.add('paused-animation', 'no-hover');
+            });
+            detail.addEventListener('toggle', () => {
+                if (!detail.open) {
+                    detail.classList.remove('paused-animation', 'no-hover');
+                }
+            });
+        });
+
+        // Auto-load saved dark mode
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+
+</html>

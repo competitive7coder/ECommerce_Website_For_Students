@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusCart | How It Works</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        /* Color shifting heading animation */
+        
+        @keyframes colorShift {
+            0% {
+                color: #facc15;
+            }
+            25% {
+                color: #22d3ee;
+            }
+            50% {
+                color: #34d399;
+            }
+            75% {
+                color: #818cf8;
+            }
+            100% {
+                color: #facc15;
+            }
+        }
+        
+        .color-animate {
+            animation: colorShift 6s infinite ease-in-out;
+        }
+        /* Water-drop like 3D shake animation */
+        
+        @keyframes shake3D {
+            0% {
+                transform: rotateX(0) rotateY(0) scale(1);
+            }
+            25% {
+                transform: rotateX(4deg) rotateY(-4deg) scale(1.03);
+            }
+            50% {
+                transform: rotateX(-4deg) rotateY(4deg) scale(1.05);
+            }
+            75% {
+                transform: rotateX(3deg) rotateY(-3deg) scale(1.02);
+            }
+            100% {
+                transform: rotateX(0) rotateY(0) scale(1);
+            }
+        }
+        
+        .shake-3d {
+            animation: shake3D 1s ease;
+        }
+        /* Scroll fade-in */
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .fade-in-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Tilt effects */
+        
+        .tilt-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+        
+        .card-container {
+            perspective: 800px;
+        }
+        
+        .tilt-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        /* Background elements */
+        
+        .bg-effects>div {
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .main-content {
+            position: relative;
+            z-index: 10;
+        }
+        /* Custom text styles */
+        
+        h2 {
+            font-size: 6rem;
+            /* Bigger font size */
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            animation: colorShift 6s infinite ease-in-out;
+            /* Automatic color change */
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 2rem;
+            /* Bigger font size */
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #facc15;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            animation: colorShift 6s infinite ease-in-out;
+            /* Automatic color change */
+        }
+        
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #f0f0f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        /* Hover effects for text */
+        
+        h3:hover {
+            color: #22d3ee;
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+        
+        a {
+            color: #ffcc00;
+            text-decoration: underline;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #d33434;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-indigo-600 via-blue-900 to-purple-900 text-white min-h-screen overflow-x-hidden">
+
+    <!-- Animated Background Bubbles -->
+    <div class="bg-effects absolute inset-0">
+        <div class="absolute top-10 left-10 w-40 h-40 bg-pink-400 opacity-20 rounded-full animate-ping"></div>
+        <div class="absolute bottom-16 right-12 w-56 h-56 bg-yellow-400 opacity-25 rounded-full animate-pulse"></div>
+        <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-blue-300 opacity-20 rounded-full animate-bounce blur-2xl"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 animate-float-pattern"></div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="pt-32 pb-16 px-6 md:px-20 main-content">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="mb-10 color-animate font-bold text-3xl">How The CampusCart Works</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 text-white text-sm">
+                <!-- Step Cards -->
+                <div class="card-container fade-in">
+                    <div class="tilt-card bg-white/10 p-6 rounded-lg shadow-md">
+                        <h3 class="mb-2 text-2xl font-bold">Step 1: Create Your Account</h3>
+                        <p class="font-bold">Sign up using your student email to access the CampusCart community. Verification ensures trust and student-only access.</p>
+                    </div>
+                </div>
+
+                <div class="card-container fade-in">
+                    <div class="tilt-card bg-white/10 p-6 rounded-lg shadow-md">
+                        <h3 class="mb-2 text-2xl font-bold">Step 2: List or Browse</h3>
+                        <p class="font-bold">Want to sell? Snap a pic, write a short description, and set your price. Looking to buy? Browse by category or use the search bar.</p>
+                    </div>
+                </div>
+
+                <div class="card-container fade-in">
+                    <div class="tilt-card bg-white/10 p-6 rounded-lg shadow-md">
+                        <h3 class="mb-2 text-2xl font-bold">Step 3: Chat with Buyers/Sellers</h3>
+                        <p class="font-bold">Use our built-in messaging to ask questions, negotiate prices, or finalize pickup spots. Safe, secure, and student-only chats.</p>
+                    </div>
+                </div>
+
+                <div class="card-container fade-in">
+                    <div class="tilt-card bg-white/10 p-6 rounded-lg shadow-md">
+                        <h3 class="mb-2 text-2xl font-bold">Step 4: Meet Up On Campus</h3>
+                        <p class="font-bold">Choose a well-lit, public spot on campus like the library or student center. Hand over the item, receive payment, and you’re done!</p>
+                    </div>
+                </div>
+
+                <div class="card-container fade-in">
+                    <div class="tilt-card bg-white/10 p-6 rounded-lg shadow-md">
+                        <h3 class="mb-2 text-2xl font-bold">Step 5: Trade, Donate, or Repeat</h3>
+                        <p class="font-bold">Use CampusCart not just to buy and sell, but also to trade or donate your items to others in need on campus.</p>
+                    </div>
+                </div>
+
+                <div class="card-container fade-in">
+                    <div class="tilt-card bg-white/10 p-6 rounded-lg shadow-md">
+                        <h3 class="mb-2 text-yellow-300 text-2xl font-bold">Step 6: Stay Safe</h3>
+                        <p class="font-bold ">Follow our <a href="" class="underline">Safety Tips</a> to keep every interaction secure. Trust your instincts and report anything suspicious.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="text-center mt-14">
+                <h4 class="text-2xl  font-semibold">Ready to get started?</h4>
+                <p class="mt-2 font-bold">Join thousands of students trading smarter and cheaper.</p>
+                <a href="index.html" class="mt-4 inline-block bg-yellow-400 text-black font-semibold px-6 py-2 rounded-full hover:bg-yellow-300 transition">Return Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        // 3D Tilt
+        VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+            max: 10,
+            speed: 400,
+            scale: 1.02,
+            glare: true,
+            "max-glare": 0.1
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 3D water-drop shake every 5 seconds
+        const waveShake = () => {
+            const cards = document.querySelectorAll('.tilt-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('shake-3d');
+                    setTimeout(() => card.classList.remove('shake-3d'), 1000);
+                }, index * 200);
+            });
+        };
+
+        setInterval(waveShake, 5000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Campus Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Slick Carousel CSS for Slider -->
+    <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50">
+
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Featured <span class="text-yellow-300">Listings</span></h2>
+
+            <!-- Product Details Section (Initially Hidden) -->
+            <div id="product-details" class="hidden mb-12">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 id="product-title" class="text-2xl font-bold text-gray-800"></h3>
+                    <p id="product-description" class="text-gray-600 mt-3"></p>
+                    <div class="flex justify-between mt-6">
+                        <span id="product-price" class="text-lg text-green-600 font-semibold"></span>
+                        <span id="product-department" class="text-xs text-gray-500"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Slider (Images Only) -->
+            <div class="product-slider mb-12">
+                <!-- Slider Item 1 -->
+                <div class="slider-item" onclick="showProductDetails(0)">
+                    <img src="https://i.ytimg.com/vi/XnHg_HeX6IE/sddefault.jpg" alt="Textbook" class="w-full h-48 object-cover rounded-lg">
+                </div>
+
+                <!-- Slider Item 2 -->
+                <div class="slider-item" onclick="showProductDetails(1)">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2022/9/IV/QU/VB/85483894/t-square-perfect-accuracy-with-blue-cover-500x500.jpg" alt="Desk Lamp" class="w-full h-48 object-cover rounded-lg">
+                </div>
+
+                <!-- Slider Item 3 -->
+                <div class="slider-item" onclick="showProductDetails(2)">
+                    <img src="https://rukminim3.flixcart.com/image/850/1000/kw104nk0/hospital-scrub/b/s/0/unisex-lab-coat-apron-cotton-white-colour-for-medical-students-original-imag8sgsgwkebmh7.jpeg?q=20&crop=false" alt="Lab Coat" class="w-full h-48 object-cover rounded-lg">
+                </div>
+
+                <!-- Slider Item 4 -->
+                <div class="slider-item" onclick="showProductDetails(3)">
+                    <img src="https://img1.exportersindia.com/product_images/bc-full/2022/6/4339233/wholesale-used-computer-laptop-x220-core-i5-1656218099-6415929.jpeg" alt="Laptop" class="w-full h-48 object-cover rounded-lg">
+                </div>
+            </div>
+
+            <!-- See All Button -->
+            <div class="text-center">
+                <a href="all-products.html" class="bg-yellow-500 text-white py-2 px-6 rounded-lg text-lg hover:bg-yellow-400 transition">See All Listings</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Slick Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize the Slick Slider
+            $('.product-slider').slick({
+                infinite: true,
+                slidesToShow: 3, // Show 3 items at a time in the slider
+                slidesToScroll: 1, // Scroll 1 item at a time
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true, // Enable navigation arrows
+                dots: true, // Enable pagination dots
+            });
+        });
+
+        // Product Details
+        const products = [{
+            title: "Data Structures and Algorithms in JAVA",
+            description: "Great condition, barely used. All chapters intact.",
+            price: "$45",
+            department: "IT department",
+            img: "https://i.ytimg.com/vi/XnHg_HeX6IE/sddefault.jpg"
+        }, {
+            title: "T Scale",
+            description: "Technical drawing instrument used by draftsmen primarily as a guide for drawing horizontal lines on a drafting table.",
+            price: "$25",
+            department: "Mechanical Department",
+            img: "https://5.imimg.com/data5/SELLER/Default/2022/9/IV/QU/VB/85483894/t-square-perfect-accuracy-with-blue-cover-500x500.jpg"
+        }, {
+            title: "Lab Coat",
+            description: "Cotton lab coats are known for their softness and breathability, making them comfortable for long shifts.",
+            price: "$120",
+            department: "Basic Science Department",
+            img: "https://rukminim3.flixcart.com/image/850/1000/kw104nk0/hospital-scrub/b/s/0/unisex-lab-coat-apron-cotton-white-colour-for-medical-students-original-imag8sgsgwkebmh7.jpeg?q=20&crop=false"
+        }, {
+            title: "Silicon I3 Gaming Laptop",
+            description: "For Colleges, Home, Institutes, Offices, Shops.",
+            price: "$80",
+            department: "B Block",
+            img: "https://img1.exportersindia.com/product_images/bc-full/2022/6/4339233/wholesale-used-computer-laptop-x220-core-i5-1656218099-6415929.jpeg"
+        }];
+
+        // Show product details when an item is clicked
+        function showProductDetails(index) {
+            const product = products[index];
+
+            // Display product details above the slider
+            document.getElementById("product-title").innerText = product.title;
+            document.getElementById("product-description").innerText = product.description;
+            document.getElementById("product-price").innerText = product.price;
+            document.getElementById("product-department").innerText = product.department;
+            document.getElementById("product-details").classList.remove("hidden");
+
+            // Optionally highlight the clicked item
+            const sliderItems = document.querySelectorAll(".slider-item");
+            sliderItems.forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add("border-4", "border-yellow-500"); // Highlight the clicked item
+                } else {
+                    item.classList.remove("border-4", "border-yellow-500"); // Remove the highlight from other items
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
